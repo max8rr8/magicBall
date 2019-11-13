@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "three": "^0.110.0"
+  },
+  "devDependencies": {
+    "parcel": "^1.12.4"
+  },
+  "browserslist": [
+      "last 1 Chrome versions"
+  ]
+}
