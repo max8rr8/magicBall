@@ -21,12 +21,12 @@ function animate(change, time) {
 }
 
 function createIcosahedronAnimation(icosahedron, setTextures) {
-    return async () => {
+    return async (isLong) => {
         await animate(dat => {
             icosahedron.rotation.x += (Math.random() - 0.1) / 10
             icosahedron.rotation.y += (Math.random() - 0.1) / 10
             icosahedron.rotation.z += (Math.random() - 0.1) / 10
-        }, 1500)
+        }, isLong ? 1500 : 250)
 
         let startX = icosahedron.rotation.x;
         let startY = icosahedron.rotation.y;
@@ -66,8 +66,11 @@ function createDragAnimation(group) {
 export default function createAnimator(group, icosahedron, setTextures) {
     let animateIcosahedron = createIcosahedronAnimation(icosahedron, setTextures)
     let drag = createDragAnimation(group)
+    let animating = false
     return async () => {
-        animateIcosahedron()
+        if(animating) return;
+        animating = true;
+        animateIcosahedron(Math.round(group.rotation.y) == 3)
 
         if (Math.round(group.rotation.y) == 3) {
             await animate(dat => {
@@ -78,8 +81,9 @@ export default function createAnimator(group, icosahedron, setTextures) {
         await drag()
         await drag()
 
-        animate(dat => {
+        await animate(dat => {
             group.rotation.y = Math.PI * dat
         }, 750)
+        animating = false
     }
 }

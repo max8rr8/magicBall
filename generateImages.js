@@ -1,3 +1,7 @@
+import * as THREE from 'three'
+import * as WebFont from 'webfontloader'
+
+const loader = new THREE.TextureLoader()
 
 function wrapText(context, text, marginLeft, marginTop, maxWidth, lineHeight) {
     var words = text.split(" ");
@@ -48,14 +52,13 @@ function generateImage(e) {
     e.image = m.toDataURL()
     let rr = document.createElement('img')
     rr.src = e.image
-    document.addEventListener('keypress', e => {
-
-        if (e.key = 't') {
-            document.body.appendChild(rr)
-        }
+    document.addEventListener('showimage', e => {
+        document.body.appendChild(rr)
+        document.body.style.overflow = 'visible'
+        document.html.style.overflow = 'visible'
     }, 100)
 
-    let tex = new THREE.MeshPhongMaterial({ map: THREE.ImageUtils.loadTexture(e.image), transparent: true, opacity: 1 })
+    let tex = new THREE.MeshPhongMaterial({ map: loader.load(e.image), transparent: true, opacity: 1 })
     tex.magFilter = THREE.NearestFilter
     e.texture = tex
 }
@@ -66,7 +69,7 @@ export default function generateImages(phrases) {
             google: {
                 families: ['Jolly Lodger', 'Open Sans']
             },
-            active: function() {
+            active: function () {
                 phrases.forEach(e => generateImage(e))
                 res()
             }

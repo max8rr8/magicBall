@@ -1,11 +1,17 @@
 {
   "dependencies": {
-    "three": "^0.110.0"
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "stats.js": "^0.17.0",
+    "t": "^0.5.1",
+    "three": "^0.110.0",
+    "threear": "^1.0.0-alpha.5",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "parcel": "^1.12.4"
   },
   "browserslist": [
-      "last 1 Chrome versions"
+    "last 1 Chrome versions"
   ]
 }
