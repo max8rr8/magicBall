@@ -4,7 +4,7 @@
     "react-dom": "^16.11.0",
     "stats.js": "^0.17.0",
     "t": "^0.5.1",
-    "three": "^0.110.0",
+    "three": "^0.137.0",
     "threear": "^1.0.0-alpha.5",
     "webfontloader": "^1.6.28"
   },
